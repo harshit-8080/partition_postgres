@@ -1,0 +1,16 @@
+1.  Create Table
+
+    create table student (id serial not null, grades int not null);
+
+
+
+2.  Insert 10 Million Rows
+
+    insert into student(grades) select floor(random()*100) from generate_series(0,10000000);  
+
+
+
+3.  Create Index
+
+    create index grade_idx on student(grades);
+     
