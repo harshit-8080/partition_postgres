@@ -1,0 +1,130 @@
+1.  create table grade_org(id serial not null, grade int not null);
+
+2.  insert into grade_org(grade) select floor(random()*100) from generate_series(0,10000000);
+
+3.  test121=# create table grade_parts(id serial not null, grade int not null) partition by range(grade);
+    CREATE TABLE
+
+4.  create table grade0040(like grade_org including indexes);
+    CREATE TABLE
+
+5.  create table grade4080(like grade_org including indexes);
+    CREATE TABLE
+
+6.  create table grade80100(like grade_org including indexes);
+    CREATE TABLE    
+
+7.  alter table grade_parts attach partition grade0040 for values from (0) to (40);
+    ALTER TABLE
+
+8.  alter table grade_parts attach partition grade4080 for values from (40) to (80);
+    ALTER TABLE
+
+9.  alter table grade_parts attach partition grade80100 for values from (80) to (100);
+    ALTER TABLE
+
+10.  test121=# \d+ grade_parts
+                                                 Partitioned table "public.grade_parts"
+    Column |  Type   | Collation | Nullable |                 Default                 | Storage | Compression | Stats target | Description 
+    --------+---------+-----------+----------+-----------------------------------------+---------+-------------+--------------+-------------
+    id     | integer |           | not null | nextval('grade_parts_id_seq'::regclass) | plain   |             |              | 
+    grade  | integer |           | not null |                                         | plain   |             |              | 
+    Partition key: RANGE (grade)
+    Partitions: grade0040 FOR VALUES FROM (0) TO (40),
+                grade4080 FOR VALUES FROM (40) TO (80),
+                grade80100 FOR VALUES FROM (80) TO (100)
+
+
+
+11. test121=# insert into grade_parts select * from grade_org;  
+    INSERT 0 10000001
+
+12. test121=# select count(*) from grade_parts;
+    count   
+    ----------
+    10000001
+    (1 row)
+
+    test121=# select count(*) from grade0040;
+    count  
+    ---------
+    3999168
+    (1 row)
+
+    test121=# select count(*) from grade4080;
+    count  
+    ---------
+    3999810
+    (1 row)
+
+    test121=# select count(*) from grade80100;
+    count  
+    ---------
+    2001023
+    (1 row)    
+
+
+13. test121=# select max(grade) from grade_org;
+    max 
+    -----
+    99
+    (1 row)
+
+    test121=# select max(grade) from grade_parts;
+    max 
+    -----
+    99
+    (1 row)
+
+    test121=# select max(grade) from grade0040;
+    max 
+    -----
+    39
+    (1 row)
+
+    test121=# select max(grade) from grade4080;
+    max 
+    -----
+    79
+    (1 row)
+
+    test121=# select max(grade) from grade80100;
+    max 
+    -----
+    99
+    (1 row)
+
+
+ 14. test121=# \d grade_parts;
+                      Partitioned table "public.grade_parts"
+    Column |  Type   | Collation | Nullable |                 Default                 
+    --------+---------+-----------+----------+-----------------------------------------
+    id     | integer |           | not null | nextval('grade_parts_id_seq'::regclass)
+    grade  | integer |           | not null | 
+    Partition key: RANGE (grade)
+    Indexes:
+        "grade_parts_idx" btree (grade)
+    Number of partitions: 3 (Use \d+ to list them.)   
+
+
+15. test121=# \d grade0040;
+             Table "public.grade0040"
+    Column |  Type   | Collation | Nullable | Default 
+    --------+---------+-----------+----------+---------
+    id     | integer |           | not null | 
+    grade  | integer |           | not null | 
+    Partition of: grade_parts FOR VALUES FROM (0) TO (40)
+    Indexes:
+        "grade0040_grade_idx" btree (grade)
+
+        
+
+    test121=# \d grade4080;
+                Table "public.grade4080"
+    Column |  Type   | Collation | Nullable | Default 
+    --------+---------+-----------+----------+---------
+    id     | integer |           | not null | 
+    grade  | integer |           | not null | 
+    Partition of: grade_parts FOR VALUES FROM (40) TO (80)
+    Indexes:
+        "grade4080_grade_idx" btree (grade)  
