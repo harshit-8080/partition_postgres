@@ -1,0 +1,13 @@
+There are two types of partitioning available ?
+
+
+    1.  Horizontal partitioning -> 
+
+            Splits table by rows
+                Use cases -> mostly Use.
+
+
+    2.  Vertical partitioning ->
+            Split table based by columns
+                Use cases -> if we have blob data in table.
+
