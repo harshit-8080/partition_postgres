@@ -11,3 +11,7 @@ There are two types of partitioning available ?
             Split table based by columns
                 Use cases -> if we have blob data in table.
 
+
+
+
+
