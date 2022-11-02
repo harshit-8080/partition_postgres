@@ -14,3 +14,9 @@
 
     create index grade_idx on student(grades);
      
+
+
+4.  create table car (cnumber int not null, grade int not null);
+
+5.  insert into car(cnumber,grade) select floor(random()*100), floor(random()*100) from generate_series(0,10000000);
+
