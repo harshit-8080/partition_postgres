@@ -1,0 +1,17 @@
+Partitioning :->    
+
+    1.  Horizontal partitioning Splits big table into multiple tables in the same database.
+
+    2.  Even in partitioning, we split into small tables, But client is agnostic (They don't know i:e is database splited or not)
+    
+    3.  Whiling spliting big table into small tables -> splited table name changes.
+
+
+
+Sharding :->
+
+    1.  Sharding Splits big tables into multiple table across multiple database server.
+
+    2.  In Sharding, since tables are on multiple database servers. Table name may or nmay not be same.
+
+    3.
