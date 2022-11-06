@@ -9,3 +9,4 @@
     1.  By spliting large tables into small tables, Now Query can run faster as less rows are there to scan.
 
     2.  Reduce the overall response time to read and load data for particular query or sql operations.
+    
