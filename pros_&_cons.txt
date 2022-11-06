@@ -1,0 +1,10 @@
+Pros of partitioning
+
+    1.  Imporove query performance when accessing a single partition.
+    2.  Easy bulk load (attach partition).
+    3.  Archive old data that are barely accessed into cheap storage.
+
+Cons of partitioning
+
+    1.  Moving of updating rows to one partition to another is slow very slow.
+    2.  bad query can lead to scan all partition.
