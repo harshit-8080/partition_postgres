@@ -1,0 +1,29 @@
+Q.  How to create a partition table ?
+Ans:-
+    By RANGE
+
+     // Create main table
+            CREATE TABLE main_table_name (
+                column_1 data type,
+                column_2 data type,
+            ) PARTITION BY RANGE (column_2);
+
+     // Creating partitioninig table
+            CREATE TABLE partition_name
+            PARTITION OF main_table_name FOR VALUES FROM (start_value) TO (end_value);
+
+
+    By List
+
+    // Create main table
+        CREATE TABLE sales_region (id int, amount int, branch text, region text) PARTITION BY LIST (region);
+
+    // Creating partitioninig table
+        CREATE TABLE London PARTITION OF sales_region FOR VALUES IN ('London');
+        CREATE TABLE Sydney PARTITION OF sales_region FOR VALUES IN ('Sydney')
+        CREATE TABLE Boston PARTITION OF sales_region FOR VALUES IN ('Boston');
+    
+
+
+
+
