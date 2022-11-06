@@ -1,0 +1,8 @@
+// tell us about ENABLE_PARTITION_PRUNING is on or not.
+1.  show ENABLE_PARTITION_PRUNING;
+
+// setting ENABLE_PARTITION_PRUNING to off. IF this is off then we wasted all partitioning.
+2.  set ENABLE_PARTITION_PRUNING = off;
+
+// setting ENABLE_PARTITION_PRUNING to on.
+2.  set ENABLE_PARTITION_PRUNING = on
