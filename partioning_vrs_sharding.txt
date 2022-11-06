@@ -14,7 +14,4 @@ Sharding :->
 
     2.  In Sharding, since tables are on multiple database servers. Table name may or nmay not be same.
 
-    3.
 
-
-    
