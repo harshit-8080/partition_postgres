@@ -10,3 +10,6 @@
 
     2.  Reduce the overall response time to read and load data for particular query or sql operations.
     
+
+
+https://dev.to/zaf07/scaling-postgresql-read-performance-2pp4
